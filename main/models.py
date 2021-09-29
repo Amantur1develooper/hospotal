@@ -1,8 +1,11 @@
+from functools import update_wrapper
 from django.db import models
 from django.db.models.fields.related import ForeignKey
+from django.urls import reverse
 
 # Create your models here.
 class Hospital(models.Model):
+    photo=models.ImageField(upload_to='main', null=True, blank=True)
     name = models.CharField('Название',max_length=100) 
     REGION = [
         ('Osh', 'Ошская'),
@@ -46,6 +49,7 @@ class Nurses(models.Model):
     pin = models.CharField('ПИН', max_length=4)
     birthdate = models.DateField('Дата рождения')
     phone = models.CharField('Номер телефона', max_length=10)
+    hospital = models.ForeignKey('Hospital', on_delete=models.PROTECT, verbose_name='Больница', default=1)
 
     def __str__(self):
         return self.name
@@ -53,6 +57,9 @@ class Nurses(models.Model):
     class Meta:
         verbose_name = 'Медсестра'
         verbose_name_plural = 'Медсестры'
+
+    def get_absolute_url(self):
+        return reverse('index')
 
 
 
@@ -76,6 +83,9 @@ class Doctor(models.Model):
     class Meta:
         verbose_name = 'Лечающий врач'
         verbose_name_plural = 'Лечающие врачи'
+    
+    def get_absolute_url(self):
+        return reverse("index")
 
     
 class Patients(models.Model):
@@ -96,3 +106,7 @@ class Patients(models.Model):
     class Meta:
         verbose_name = 'Пациент'
         verbose_name_plural = 'Пациенты'
+
+    def get_absolute_url(self):
+        return reverse('index')
+    

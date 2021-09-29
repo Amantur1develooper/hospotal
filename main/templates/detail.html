@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %} {{hospital_detail}} {% endblock%}
+ 
+{% block content %}
+<div class="container  justify-content">
+  <h1>{{hospital.detail}}</h1>
+  <img style="position: relative; left: 250px" src="{{hospital_detail.photo.url}}" alt="Photo" haight='300px' width="600px" margin="200px">  
+              <table class="table">
+                <tr>
+                  <th>Терапевт/Хирург</th>
+                  <th>ФИО</th>
+                  <th>ПИН</th>
+                  <th>Дата Рождения</th>
+                  <th>Номер телефона</th>
+                  <th>Больница</th>
+                  <th>Медсестра</th>
+                </tr>
+                {% for doctor in doctor_detail %}
+                <tr>
+                  <td>{{ doctor.position }}</td>
+                  <td>{{ doctor.name }}</td>
+                  <td>{{ doctor.pin }}</td>
+                  <td>{{ doctor.birthdate  }}</td>
+                  <td>{{ doctor.phone}}</td>
+                  <td>{{ doctor.hospital }}</td>
+                  <td>{{ doctor.nurse }}</td>
+                </tr>
+        {% endfor %}
+              </table>
+              <table class="table">
+                <tr>
+                  
+                  <th>Медсестра</th>
+                  <th>ПИН</th>
+                  <th>Дата Рождения</th>
+                  <th>Номер телефона</th>
+                  {% comment %} <th>Больница</th> {% endcomment %}
+                  {% comment %} <th>Медсестра</th> {% endcomment %}
+                </tr>
+                {% for doctor in nurses %}
+                <tr>
+                  {% comment %} <td>{{ doctor.position }}</td> {% endcomment %}
+                  {% comment %} <td>Медсетсра</td> {% endcomment %}
+                  <td>{{ doctor.name }}</td>
+                  <td>{{ doctor.pin }}</td>
+                  <td>{{ doctor.birthdate  }}</td>
+                  <td>{{ doctor.phone}}</td>
+                  {% comment %} <td>{{ doctor.hospital }}</td> {% endcomment %}
+                  {% comment %} <td>{{ doctor.nurse }}</td> {% endcomment %}
+                </tr>
+        {% endfor %}
+              </table>
+                     <table class="table">
+                <tr>
+                  <th>Пациент</th>
+                  <th>ФИО</th>
+                  <th>ПИН</th>
+                  <th>Дата Рождения</th>
+                  <th>Номер телефона</th>
+                  <th>Больница</th>
+                  <th>Медсестра</th>
+                </tr>
+                {% for doctor in patients %}
+                <tr>
+                  <td>{{ doctor.position }}</td>
+                  <td>{{ doctor.name }}</td>
+                  <td>{{ doctor.pin }}</td>
+                  <td>{{ doctor.birthdate  }}</td>
+                  <td>{{ doctor.phone}}</td>
+                  <td>{{ doctor.hospital }}</td>
+                  <td>{{ doctor.nurse }}</td>
+                </tr>
+        {% endfor %}
+              </table>
+
+              <a href="{% url 'adddoctor' %}" class="btn btn-primary my-2">Add Doctor</a>
+              {% comment %} <button href="#" class="btn btn-secondary my-2">Secondary action</button> {% endcomment %}
+</div>
+{% endblock %}
