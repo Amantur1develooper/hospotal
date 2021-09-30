@@ -7,9 +7,9 @@
 
     {% csrf_token %}
     <div class='form-group'
-
+    <div class="container"
     {{form.as_p}}
-
+    </div>
     <button class="btn btn-primary" type='submit'>Save</button>
     <a class="btn btn-primary" href="{% url 'index' %}">back</a>
 </form>

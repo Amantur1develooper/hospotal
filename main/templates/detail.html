@@ -72,8 +72,9 @@
                 </tr>
         {% endfor %}
               </table>
-
+            {% if request.user.is_authenticated %}
               <a href="{% url 'adddoctor' %}" class="btn btn-primary my-2">Add Doctor</a>
               {% comment %} <button href="#" class="btn btn-secondary my-2">Secondary action</button> {% endcomment %}
+            {% endif%}
 </div>
 {% endblock %}
